@@ -1,11 +1,14 @@
 <script setup>
 import NavBar from "./components/NavBar.vue";
-import SearchBar from "./components/SearchBar.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
   <main>
     <NavBar />
-    <SearchBar />
+    <div class="view">
+      <RouterView></RouterView>
+    </div>
+    <Footer />
   </main>
 </template>

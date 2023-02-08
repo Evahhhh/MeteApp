@@ -1,32 +1,44 @@
 <script>
+
     export default {
         methods: {
+
             search() {
 
+                var cityName = document.querySelector('#cityName').value;
+
                 const apiKey = "ee07e2bf337034f905cde0bdedae3db8"
-                let cityName = document.querySelector('#SearchBar').value;
-                let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}&lang=fr`;
+
+                console.log("Ville : ", cityName);
+
+                
+                let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=` + cityName + `&units=metric&appid=`+ apiKey + `&lang=fr`;
                 var infos;
 
+                
                 fetch(apiUrl).then(function(response) {
                     if (response.ok) {
                         response.json().then(function(data) {
-                            let date = new Date();
-                            current_date = date.toLocaleDateString();
                             
-                            infos = {
+                            console.log(data);
+                            var date = new Date();
+                            var current_date = date.toLocaleDateString();
+                            
+                            var data_J0 = weatherByDay(data, 0);
+                            var data_J1 = weatherByDay(data, 1);
+                            var data_J2 = weatherByDay(data, 2);
+                            var data_J3 = weatherByDay(data, 3);
+                            var data_J4 = weatherByDay(data, 4);
+                            var data_J5 = weatherByDay(data, 5);
 
-                                city : data.name,
-                                date : current_date,
-                                weather : weatherName(data.weather[0].main),
-                                temp : data.main.temp,
-                                tempFeelsLike : data.main.feels_like,
-                                tempMin : data.main.temp_min,
-                                tempMax : data.main.temp_max,
-                                humidity : data.main.humidity,
-                                windSpeed : data.wind.speed
 
-                            }
+                            console.log("Aujourd'hui : " + data_J0.desc_comp + " - Température " + data_J0.temperature + "°C")
+                            console.log("Demain : " + data_J1.desc_comp+ " - Température " + data_J1.temperature + "°C")
+                            console.log("Après-demain : " + data_J2.desc_comp + " - Température " + data_J2.temperature + "°C")
+                            console.log("Dans 3 jours : " + data_J3.desc_comp + " - Température " + data_J3.temperature + "°C")
+                            console.log("Dans 4 jours : " + data_J4.desc_comp + " - Température " + data_J4.temperature + "°C")
+                            console.log("Dans 5 jours : " + data_J5.desc_comp + " - Température " + data_J5.temperature + "°C")
+                            
                         
                         });
 
@@ -43,21 +55,51 @@
 
                 });
 
-            module.exports(infos);
+            return(infos);
 
-        },
+            }
+
+        }
+    }
+
+
+    function weatherByDay(apiResult, dayWanted){
+
+        const idWeather = apiResult.list[dayWanted].weather[0].id;
+        const desc_comp = apiResult.list[dayWanted].weather[0].description;
+        const temperature = apiResult.list[dayWanted].main.temp.toFixed(1);
+        const temp_max = apiResult.list[dayWanted].main.temp_max.toFixed(1);
+        const temp_min = apiResult.list[dayWanted].main.temp_min.toFixed(1);
+        const temp_ressentie = apiResult.list[dayWanted].main.feels_like.toFixed(1);
+        const humidity = apiResult.list[dayWanted].main.humidity;
+        const pressure = apiResult.list[dayWanted].main.pressure;
+        const wind = apiResult.list[dayWanted].wind.speed;
+
+        var weather =   {
+            idWeather: idWeather,
+            desc_comp: desc_comp,
+            temperature: temperature,
+            temp_max: temp_max,
+            temp_min: temp_min,
+            temp_ressentie: temp_ressentie,
+            humidity: humidity,
+            pressure: pressure,
+            wind: wind
+        }
+
+        return weather;
+    }
     
-    },
-}
 
 
 </script>
 
 <template>
     <div class="search-bar">
-        <form class="SearchBar">
-            <input type="text" placeholder="Search" />
-            <button type="button" @click="search">Search</button>
+        <form class="searchBar">
+            <label for="cityName">Choisissez une ville :</label>
+            <input type="text" id="cityName" value="Paris" required>
+            <button type="button" @click="search" class="search" id="search">Rechercher</button>
         </form>
     </div>
 </template>

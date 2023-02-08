@@ -11,13 +11,13 @@
 
         <div class="btnSpace">
             <div class="btn">
-                <router-link to="/" class="nav-link">Home</router-link>
+                <router-link class="btn-txt" to="/app">Accueil</router-link>
             </div>
             <div class="btn">
-                <router-link to="/about" class="nav-link">About</router-link>
+                <router-link class="btn-txt" to="/contact">Contact</router-link>
             </div>
             <div class="btn">
-                <router-link to="/contact" class="nav-link">Contact</router-link>
+                <router-link class="btn-txt" to="/help">Aide</router-link>
             </div>
         </div>
     </nav>
@@ -39,11 +39,16 @@
     .btn{
         background-color: #CF8E80;;
         border-radius: 5px;
+        padding : 5px 15px 5px 15px;
         cursor: pointer;
     }
 
-    .button:hover {
+    .btn:hover {
         background-color: #c68a7d;
+    }
+
+    .btn-txt{
+        color : white;
     }
 
 
