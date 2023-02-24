@@ -12,7 +12,7 @@ const router = VueRouter.createRouter({
 history: VueRouter.createWebHistory(),
 routes: [
     {
-    path: '/app',
+    path: '/',
     name: 'app',
     component: Home
     },

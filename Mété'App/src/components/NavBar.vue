@@ -11,7 +11,7 @@
 
         <div class="btnSpace">
             <div class="btn">
-                <router-link class="btn-txt" to="/app">Accueil</router-link>
+                <router-link class="btn-txt" to="/">Accueil</router-link>
             </div>
             <div class="btn">
                 <router-link class="btn-txt" to="/contact">Contact</router-link>

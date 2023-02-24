@@ -1,5 +1,10 @@
 <template>
     <div id="app">
-        <p>Page Help</p>
+        <p class="writingHelp">Page Aide</p>
     </div>
 </template>
+<style scoped>
+.writingHelp{
+    color : black;
+}
+</style>
