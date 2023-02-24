@@ -1,5 +1,7 @@
 <script>
 
+    var apiResult = null;
+
     export default {
         methods: {
 
@@ -19,17 +21,19 @@
                 fetch(apiUrl).then(function(response) {
                     if (response.ok) {
                         response.json().then(function(data) {
+
+                            apiResult = data;
                             
                             console.log(data);
                             var date = new Date();
                             var current_date = date.toLocaleDateString();
                             
-                            var data_J0 = weatherByDay(data, 0);
-                            var data_J1 = weatherByDay(data, 1);
-                            var data_J2 = weatherByDay(data, 2);
-                            var data_J3 = weatherByDay(data, 3);
-                            var data_J4 = weatherByDay(data, 4);
-                            var data_J5 = weatherByDay(data, 5);
+                            var data_J0 = weatherByDay(0);
+                            var data_J1 = weatherByDay(1);
+                            var data_J2 = weatherByDay(2);
+                            var data_J3 = weatherByDay(3);
+                            var data_J4 = weatherByDay(4);
+                            var data_J5 = weatherByDay(5);
 
 
                             console.log("Aujourd'hui : " + data_J0.desc_comp + " - Température " + data_J0.temperature + "°C")
@@ -60,37 +64,39 @@
             }
 
         }
+        
     }
 
+    export function weatherByDay(dayWanted){
 
-    function weatherByDay(apiResult, dayWanted){
-
-        const idWeather = apiResult.list[dayWanted].weather[0].id;
-        const desc_comp = apiResult.list[dayWanted].weather[0].description;
-        const temperature = apiResult.list[dayWanted].main.temp.toFixed(1);
-        const temp_max = apiResult.list[dayWanted].main.temp_max.toFixed(1);
-        const temp_min = apiResult.list[dayWanted].main.temp_min.toFixed(1);
-        const temp_ressentie = apiResult.list[dayWanted].main.feels_like.toFixed(1);
-        const humidity = apiResult.list[dayWanted].main.humidity;
-        const pressure = apiResult.list[dayWanted].main.pressure;
-        const wind = apiResult.list[dayWanted].wind.speed;
-
-        var weather =   {
-            idWeather: idWeather,
-            desc_comp: desc_comp,
-            temperature: temperature,
-            temp_max: temp_max,
-            temp_min: temp_min,
-            temp_ressentie: temp_ressentie,
-            humidity: humidity,
-            pressure: pressure,
-            wind: wind
-        }
-
-        return weather;
-    }
+        if(apiResult == null){
+            console.log("SaerchBar : En attente de la sélection d'une ville")
+        }else{
+            const idWeather = apiResult.list[dayWanted].weather[0].id;
+            const desc_comp = apiResult.list[dayWanted].weather[0].description;
+            const temperature = apiResult.list[dayWanted].main.temp.toFixed(1);
+            const temp_max = apiResult.list[dayWanted].main.temp_max.toFixed(1);
+            const temp_min = apiResult.list[dayWanted].main.temp_min.toFixed(1);
+            const temp_ressentie = apiResult.list[dayWanted].main.feels_like.toFixed(1);
+            const humidity = apiResult.list[dayWanted].main.humidity;
+            const pressure = apiResult.list[dayWanted].main.pressure;
+            const wind = apiResult.list[dayWanted].wind.speed;
     
+            var weather =   {
+                idWeather: idWeather,
+                desc_comp: desc_comp,
+                temperature: temperature,
+                temp_max: temp_max,
+                temp_min: temp_min,
+                temp_ressentie: temp_ressentie,
+                humidity: humidity,
+                pressure: pressure,
+                wind: wind
+            }
 
+            return weather;
+        }
+    }  
 
 </script>
 
@@ -105,5 +111,33 @@
 </template>
 
 <style>
+
+.searchBar{
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+label{
+    color: black;
+}
+
+.searchBar input[type="text"]{
+    border:none;
+    border-radius : 10px;
+    padding : 10px;
+}
+
+button{
+    background-color : #CF8E80;
+    color : white;
+    padding : 10px 20px;
+    border-radius : 10px;
+    border : none;
+    cursor:  pointer;
+}
+
+
     
 </style>

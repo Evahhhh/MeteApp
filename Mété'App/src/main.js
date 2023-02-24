@@ -8,7 +8,6 @@ import "./assets/main.css";
 
 createApp(App).mount("#app");
 
-
 const router = VueRouter.createRouter({
 history: VueRouter.createWebHistory(),
 routes: [

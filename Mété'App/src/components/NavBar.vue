@@ -25,10 +25,10 @@
   
   <style>
     .nav-link {
-    display: inline-block;
-    padding: 0.5em 1em;
-    color: white;
-    text-decoration: none;
+        display: inline-block;
+        padding: 0.5em 1em;
+        color: white;
+        text-decoration: none;
     }
 
     .btnSpace{
