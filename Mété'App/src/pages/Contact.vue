@@ -1,10 +1,7 @@
 <template>
-    <div id="app">
-        <p class="writingContact">Page Contact</p>
-    </div>
+    <ContactFormVue />
 </template>
-<style scoped>
-.writingContact{
-    color : black;
-}
-</style>
+
+<script setup>
+    import ContactFormVue from "./../components/ContactForm.vue";
+</script>
