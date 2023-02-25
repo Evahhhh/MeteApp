@@ -1,10 +1,7 @@
 <template>
-    <div id="app">
-        <p class="writingHelp">Page Aide</p>
-    </div>
+    <Aide />
 </template>
-<style scoped>
-.writingHelp{
-    color : black;
-}
-</style>
+
+<script setup>
+    import Aide from "./../components/Aide.vue";
+</script>
