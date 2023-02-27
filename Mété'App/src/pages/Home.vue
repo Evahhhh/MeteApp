@@ -1,7 +1,7 @@
 <template>
-    <Weather />
+  <Weather />
 </template>
 
 <script setup>
-    import Weather from "./../components/Weather.vue";
+import Weather from "./../components/Weather.vue";
 </script>

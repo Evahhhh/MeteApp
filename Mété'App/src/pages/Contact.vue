@@ -1,7 +1,7 @@
 <template>
-    <ContactFormVue />
+  <ContactFormVue />
 </template>
 
 <script setup>
-    import ContactFormVue from "./../components/ContactForm.vue";
+import ContactFormVue from "./../components/ContactForm.vue";
 </script>

@@ -2,15 +2,13 @@
   <div class="search-bar">
     <form class="searchBar" @submit.prevent="search">
       <label for="cityName">Choisissez une ville :</label>
-      <input type="text" v-model="cityName" id="cityName" required>
+      <input type="text" v-model="cityName" id="cityName" required />
       <button type="submit" class="search" id="search">Rechercher</button>
     </form>
   </div>
 
   <div class="page" v-if="!apiResult">
-    <p class="empty-town-message">
-      Veuillez sélectionner une ville
-    </p>
+    <p class="empty-town-message">Veuillez sélectionner une ville</p>
   </div>
   <div class="page" v-if="apiResult">
     <div class="line1">
@@ -35,9 +33,9 @@
     </div>
   </div>
 </template>
-  
+
 <script>
-import WeatherCard from './../components/WeatherCard.vue';
+import WeatherCard from "./../components/WeatherCard.vue";
 
 export default {
   components: {
@@ -48,7 +46,7 @@ export default {
       apiResult: null,
       cityName: "",
       apiKey: "ee07e2bf337034f905cde0bdedae3db8",
-    }
+    };
   },
   methods: {
     findImgByIdWeather(id) {
@@ -81,9 +79,12 @@ export default {
         const idWeather = this.apiResult.list[dayWanted].weather[0].id;
         const desc_comp = this.apiResult.list[dayWanted].weather[0].description;
         const temperature = this.apiResult.list[dayWanted].main.temp.toFixed(1);
-        const temp_max = this.apiResult.list[dayWanted].main.temp_max.toFixed(1);
-        const temp_min = this.apiResult.list[dayWanted].main.temp_min.toFixed(1);
-        const temp_ressentie = this.apiResult.list[dayWanted].main.feels_like.toFixed(1);
+        const temp_max =
+          this.apiResult.list[dayWanted].main.temp_max.toFixed(1);
+        const temp_min =
+          this.apiResult.list[dayWanted].main.temp_min.toFixed(1);
+        const temp_ressentie =
+          this.apiResult.list[dayWanted].main.feels_like.toFixed(1);
         const humidity = this.apiResult.list[dayWanted].main.humidity;
         const pressure = this.apiResult.list[dayWanted].main.pressure;
         const wind = this.apiResult.list[dayWanted].wind.speed;
@@ -92,40 +93,40 @@ export default {
         const date = new Date();
         const options = { weekday: "long" };
 
-        switch(dayWanted){
-          case 0 :
-            day = "Aujourd'hui"
+        switch (dayWanted) {
+          case 0:
+            day = "Aujourd'hui";
             break;
-          case 1 :
-            day = "Demain"
+          case 1:
+            day = "Demain";
             break;
-          case 2 : 
+          case 2:
             date.setDate(date.getDate() + 2);
             const currentPlus2 = date.toLocaleDateString("fr-FR", options);
-            day = currentPlus2
+            day = currentPlus2;
             break;
-          case 3 : 
+          case 3:
             date.setDate(date.getDate() + 3);
             const currentPlus3 = date.toLocaleDateString("fr-FR", options);
-            day = currentPlus3
-            break;;
-          case 4 : 
+            day = currentPlus3;
+            break;
+          case 4:
             date.setDate(date.getDate() + 4);
             const currentPlus4 = date.toLocaleDateString("fr-FR", options);
-            day = currentPlus4
+            day = currentPlus4;
             break;
-          case 5 : 
+          case 5:
             date.setDate(date.getDate() + 5);
             const currentPlus5 = date.toLocaleDateString("fr-FR", options);
-            day = currentPlus5
+            day = currentPlus5;
             break;
         }
 
         var icon = this.findImgByIdWeather(idWeather);
 
         var weather = {
-          icon : icon,
-          day : day,
+          icon: icon,
+          day: day,
           idWeather: idWeather,
           desc_comp: desc_comp,
           temperature: temperature,
@@ -157,10 +158,10 @@ export default {
           alert("Unable to connect to OpenWeather");
         });
     },
-  }
+  },
 };
 </script>
-  
+
 <style scoped>
 .page {
   display: flex;
@@ -222,4 +223,3 @@ button {
   color: black;
 }
 </style>
-  
