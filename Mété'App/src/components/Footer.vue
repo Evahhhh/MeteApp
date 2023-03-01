@@ -20,5 +20,12 @@ footer {
   text-align: center;
   padding: 10px;
   border-radius: 5px;
+  height : 70px;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 </style>

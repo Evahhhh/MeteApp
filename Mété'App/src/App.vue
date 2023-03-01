@@ -5,10 +5,18 @@ import Footer from "./components/Footer.vue";
 
 <template>
   <main>
-    <NavBar />
-    <div class="view">
-      <RouterView></RouterView>
+    <div class="page">
+      <NavBar />
+      <div class="view">
+        <RouterView></RouterView>
+      </div>
     </div>
     <Footer />
   </main>
 </template>
+
+<style scoped>
+.page{
+  margin-bottom: 100px;
+}
+</style>
